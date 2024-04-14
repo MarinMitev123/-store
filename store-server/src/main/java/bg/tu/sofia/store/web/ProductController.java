@@ -122,7 +122,7 @@ public class ProductController {
                         .build()
                         .toString();
         product.setImageUrl(url);
-        Product created = productService.creatProduct(product);
+        Product created = productService.createProduct(product);
         return ResponseEntity.ok(created);
     }
 
