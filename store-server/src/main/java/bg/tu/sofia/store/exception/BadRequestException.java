@@ -1,4 +1,4 @@
-package bg.pgmet.mitev.store.exception;
+package bg.tu.sofia.store.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

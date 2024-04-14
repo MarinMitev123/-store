@@ -1,4 +1,4 @@
-package bg.pgmet.mitev.store.exception;
+package bg.tu.sofia.store.exception;
 
 public class InvalidEntityIdException extends RuntimeException {
 

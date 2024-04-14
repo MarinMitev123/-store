@@ -3,26 +3,15 @@ package bg.tu.sofia.store.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import lombok.*;
+import org.hibernate.validator.constraints.Length;
+
+import javax.persistence.*;
+import javax.transaction.Transactional;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.transaction.Transactional;
-import javax.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.hibernate.validator.constraints.Length;
 
 @Data
 // Използване на Lombok за автоматично генериране на getter и setter методи, toString и други
@@ -78,7 +67,7 @@ public class User {
     @Builder.Default private String imageUrl = DEFAULT_IMAGE;
     // URL адрес на профилната снимка на потребителя
 
-    private Role role;
+    private bg.tu.sofia.store.model.enums.Role role;
     // Ролята на потребителя в системата (например, администратор, потребител и т.н.)
 
     @OneToMany(

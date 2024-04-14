@@ -61,14 +61,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutSuccessHandler((new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK)))
                 .deleteCookies(SecurityConstants.ACCESS_TOKEN, "JSESSIONID")
                 .and()
-                .authorizeRequests()
-                .antMatchers("/api/login", "/api/register", "/api/supplements/**")
-                .permitAll()
-                .and()
-                .authorizeRequests()
-                .antMatchers("/api/products/**", "/api/users/**")
-                .authenticated()
-                .and()
+//                .authorizeRequests()
+//                .antMatchers("/api/login", "/api/register", "/api/supplements/**")
+//                .permitAll()
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers("/api/products/**", "/api/users/**")
+//                .authenticated()
+//                .and()
                 .addFilter(new JwtAuthenticationFilter(authenticationManager()))
                 .addFilter(new JwtAuthorizationFilter(authenticationManager(), userService))
                 .sessionManagement();
@@ -82,18 +82,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return mapper;
     }
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration corsConfiguration = new CorsConfiguration().applyPermitDefaultValues();
-        corsConfiguration.addAllowedHeader(SecurityConstants.TOKEN_HEADER);
-        corsConfiguration.addExposedHeader(SecurityConstants.TOKEN_HEADER);
-        corsConfiguration.addAllowedHeader("Access-Control-Allow-Origin");
-        corsConfiguration.addExposedHeader("Access-Control-Allow-Origin");
-        corsConfiguration.setMaxAge(3600L);
-        corsConfiguration.addAllowedOrigin("*");
-        source.registerCorsConfiguration("/**", corsConfiguration);
-        return source;
-    }
 }
 

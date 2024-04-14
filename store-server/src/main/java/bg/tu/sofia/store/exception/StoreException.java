@@ -1,9 +1,9 @@
-package bg.pgmet.mitev.store.exception;
+package bg.tu.sofia.store.exception;
 
-public class MitevStoreException extends RuntimeException {
-    private bg.pgmet.mitev.store.exception.ErrorCode errorCode;
+public class StoreException extends RuntimeException {
+    private ErrorCode errorCode;
 
-    public MitevStoreException(String message) {
+    public StoreException(String message) {
         super(message);
     }
 

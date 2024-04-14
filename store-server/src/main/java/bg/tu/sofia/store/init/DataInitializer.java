@@ -1,5 +1,6 @@
-package bg.tu.sofia.store.config; // Промяна на пакета
+package bg.tu.sofia.store.init; // Промяна на пакета
 
+import bg.tu.sofia.store.model.User;
 import bg.tu.sofia.store.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +27,7 @@ public class DataInitializer implements ApplicationRunner {
                         .password(passwordEncoder.encode("admin"))
                         .firstName("ADMIN")
                         .lastName("ADMIN")
-                        .role(Role.ADMIN)
+                        .role(bg.tu.sofia.store.model.enums.Role.ADMIN)
                         .build();
         userService.createUser(adminAccount, true);
     }

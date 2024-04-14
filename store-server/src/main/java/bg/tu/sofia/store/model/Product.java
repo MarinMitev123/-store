@@ -1,15 +1,12 @@
-package bg.pgmet.mitev.store.model;
+package bg.tu.sofia.store.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -22,7 +19,7 @@ import java.util.List;
 @Entity
 @Table(name = "products")
 @Builder
-@EqualsAndHashCode(of = {"name", "id"})
+@EqualsAndHashCode(of = {"model", "id"})
 @JsonIgnoreProperties(value = {"comments"})
 public class Product {
 
@@ -30,42 +27,47 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Име на продукта
-    @NotNull(message = "Name cannot be null")
-    @Length(min = 1, max = 100, message = "Name length must be between 1 and 100")
-    private String name;
+    @Length(min = 1, max = 60, message = "Model name length must be between 1 and 60")
+    @Column(unique = true)
+    @NotNull(message = "Model cannot be null")
+    private String model;
 
-    // Описание на продукта
-    @Length(max = 1000, message = "Description length must be maximum 1000")
-    private String description;
+    @NotNull(message = "Brand type cannot be null")
+    private String BrandType;
 
-    // Категория на продукта (хранителна добавка, аксесоар или облекло)
+    @NotNull(message = "Food type cannot be null")
+    private String FoodType;
+
     @NotNull(message = "Category cannot be null")
-    private String category;
+    private String Category;
 
-    // Цена на продукта
-    @Min(value = 0, message = "Price must be at least 0")
+    @Builder.Default private Boolean onSale = false;
+
+    @NotNull(message = "Product category cannot be null")
+    private String ProductCategory;
+
+    @Min(value = 1, message = "Price must be at least 1 $")
     @NotNull(message = "Price cannot be null")
     private Double price;
 
-    // Наличност на продукта
-    @Min(value = 0, message = "Stock must be at least 0")
-    @NotNull(message = "Stock cannot be null")
-    private Integer stock;
-
+    @Builder.Default
+    @Min(value = 0, message = "Discount % must be at least 0")
+    @Max(value = 100, message = "Discount % must be maximum 100")
+    private Integer percentOff = 0;
     // URL адрес към изображение на продукта
     private String imageUrl;
 
     // Дата и час на създаване на продукта
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Builder.Default
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime released = LocalDateTime.now();
 
     // Списък от коментари, свързани с продукта
     @OneToMany(
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             mappedBy = "product",
             cascade = CascadeType.REMOVE,
             orphanRemoval = true)
+    @ToString.Exclude
     private List<Comment> comments = new ArrayList<>();
 }

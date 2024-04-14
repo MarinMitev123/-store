@@ -1,4 +1,4 @@
-package bg.pgmet.mitev.store.exception;
+package bg.tu.sofia.store.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
