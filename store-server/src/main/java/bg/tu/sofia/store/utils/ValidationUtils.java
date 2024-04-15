@@ -1,14 +1,13 @@
 package bg.tu.sofia.store.utils;
 
 import bg.tu.sofia.store.exception.StoreException;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.util.CollectionUtils;
-
+import java.util.Set;
+import java.util.stream.Collectors;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
-import java.util.Set;
-import java.util.stream.Collectors;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.CollectionUtils;
 
 public class ValidationUtils {
     private static final Validator VALIDATOR =

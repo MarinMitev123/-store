@@ -5,16 +5,15 @@ import bg.tu.sofia.store.exception.EntityNotFoundException;
 import bg.tu.sofia.store.exception.StoreException;
 import bg.tu.sofia.store.model.User;
 import bg.tu.sofia.store.service.UserService;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
-
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
 
 @Service
 @Slf4j
@@ -110,4 +109,3 @@ public class UserServiceImpl implements UserService {
         return old; // Връщане на изтрития потребител
     }
 }
-

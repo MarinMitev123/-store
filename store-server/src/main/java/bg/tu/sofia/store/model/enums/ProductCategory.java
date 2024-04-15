@@ -1,7 +1,6 @@
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;
-
 import java.util.stream.Stream;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
@@ -35,7 +34,8 @@ public enum ProductCategory {
     }
 
     @JsonCreator
-    // Анотация, която указва метода, който да се използва за десериализация на JSON обектите в енумерацията
+    // Анотация, която указва метода, който да се използва за десериализация на JSON обектите в
+    // енумерацията
     public static ProductCategory of(String label) {
         return Stream.of(ProductCategory.values())
                 .filter(p -> p.getLabel().equals(label))

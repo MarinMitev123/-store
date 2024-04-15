@@ -1,6 +1,5 @@
 package bg.tu.sofia.store.web;
 
-
 import bg.tu.sofia.store.exception.InvalidEntityIdException;
 import bg.tu.sofia.store.model.Comment;
 import bg.tu.sofia.store.model.Product;
@@ -14,6 +13,10 @@ import bg.tu.sofia.store.service.ProductService;
 import bg.tu.sofia.store.service.UserService;
 import bg.tu.sofia.store.utils.JsonUtil;
 import bg.tu.sofia.store.utils.ValidationUtils;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -23,11 +26,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
-
-import javax.validation.Valid;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/products")
@@ -48,15 +46,12 @@ public class ProductController {
             @RequestParam(value = "onSale", required = false) Boolean onSale) {
         return productService.getAllProducts().stream()
                 .filter(product -> brandtype == null || product.getBrandType().equals(brandtype))
+                .filter(product -> category == null || product.getCategory().equals(category))
+                .filter(product -> foodtype == null || product.getFoodType().equals(foodtype))
                 .filter(
                         product ->
-                                category == null
-                                        || product.getCategory().equals(category))
-                .filter(
-                        product ->
-                                foodtype == null
-                                        || product.getFoodType().equals(foodtype))
-                .filter(product -> productcategory == null || product.getProductCategory().equals(productcategory))
+                                productcategory == null
+                                        || product.getProductCategory().equals(productcategory))
                 .filter(product -> onSale == null || product.getOnSale() == onSale)
                 .collect(Collectors.toSet());
     }
@@ -88,13 +83,14 @@ public class ProductController {
 
     @GetMapping(value = "/filter/productcategory/{productcategory}")
     public Set<Product> getProductsByProductCategory(@PathVariable String productCategory) {
-        return productService.getProductsByProductCategory(productCategory.valueOf(productCategory));
+        return productService.getProductsByProductCategory(
+                productCategory.valueOf(productCategory));
     }
 
-//    @GetMapping(value = "/filter/role/{role}")
-//    public Set<Product> getProductsByRole(@PathVariable String role) {
-//        return productService.getProductsByRole(role);
-//    }
+    //    @GetMapping(value = "/filter/role/{role}")
+    //    public Set<Product> getProductsByRole(@PathVariable String role) {
+    //        return productService.getProductsByRole(role);
+    //    }
 
     @GetMapping(value = "onSale")
     public Set<Product> getProductsByOnSale() {

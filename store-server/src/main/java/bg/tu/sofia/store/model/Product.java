@@ -33,18 +33,18 @@ public class Product {
     private String model;
 
     @NotNull(message = "Brand type cannot be null")
-    private String BrandType;
+    private String brandType;
 
     @NotNull(message = "Food type cannot be null")
-    private String FoodType;
+    private String foodType;
 
     @NotNull(message = "Category cannot be null")
-    private String Category;
+    private String category;
 
     @Builder.Default private Boolean onSale = false;
 
     @NotNull(message = "Product category cannot be null")
-    private String ProductCategory;
+    private String productCategory;
 
     @Min(value = 1, message = "Price must be at least 1 $")
     @NotNull(message = "Price cannot be null")

@@ -8,6 +8,9 @@ import bg.tu.sofia.store.security.IsAuthenticated;
 import bg.tu.sofia.store.service.FilesStorageService;
 import bg.tu.sofia.store.service.UserService;
 import bg.tu.sofia.store.utils.JsonUtil;
+import java.net.URI;
+import java.util.Set;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -18,10 +21,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
-
-import javax.validation.Valid;
-import java.net.URI;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/api/users")

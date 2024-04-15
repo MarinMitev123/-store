@@ -6,14 +6,13 @@ import bg.tu.sofia.store.model.Comment;
 import bg.tu.sofia.store.model.Product;
 import bg.tu.sofia.store.model.User;
 import bg.tu.sofia.store.service.CommentService;
+import java.time.LocalDateTime;
+import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDateTime;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -99,4 +98,3 @@ public class CommentServiceImpl implements CommentService {
         return comment;
     }
 }
-

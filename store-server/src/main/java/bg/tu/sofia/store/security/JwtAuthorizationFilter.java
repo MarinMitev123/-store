@@ -1,9 +1,9 @@
 package bg.tu.sofia.store.security;
 
-import  bg.tu.sofia.store.model.User;
-import  bg.tu.sofia.store.service.UserService;
-import  bg.tu.sofia.store.utils.JsonUtil;
-import  bg.tu.sofia.store.utils.SecurityUtil;
+import bg.tu.sofia.store.model.User;
+import bg.tu.sofia.store.service.UserService;
+import bg.tu.sofia.store.utils.JsonUtil;
+import bg.tu.sofia.store.utils.SecurityUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
@@ -73,11 +73,11 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
                 List<SimpleGrantedAuthority> authorities =
                         ((List<?>) parsedToken.getBody().get(SecurityConstants.ROLE_KEY))
                                 .stream()
-                                .map(
-                                        authority ->
-                                                new SimpleGrantedAuthority(
-                                                        "ROLE_" + authority))
-                                .collect(Collectors.toList());
+                                        .map(
+                                                authority ->
+                                                        new SimpleGrantedAuthority(
+                                                                "ROLE_" + authority))
+                                        .collect(Collectors.toList());
 
                 // Проверка дали съществуват потребителски данни
                 if (!StringUtils.isEmpty(accountRaw)) {
@@ -146,4 +146,3 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
                 .map(Cookie::getValue);
     }
 }
-

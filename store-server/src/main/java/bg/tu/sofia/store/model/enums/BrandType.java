@@ -6,12 +6,12 @@ import java.util.Objects;
 import java.util.stream.Stream;
 
 public enum BrandType {
-    VITABUDDY("VitaBuddy"),     // Марка VitaBuddy
-    NUTRIBEST("NutriBest"),     // Марка NutriBest
-    PURENATURE("PureNature"),   // Марка PureNature
+    VITABUDDY("VitaBuddy"), // Марка VitaBuddy
+    NUTRIBEST("NutriBest"), // Марка NutriBest
+    PURENATURE("PureNature"), // Марка PureNature
     HERBALSENSE("HerbalSense"), // Марка HerbalSense
-    ORGANICA("Organica"),       // Марка Organica
-    FITGURU("FitGuru"),         // Марка FitGuru
+    ORGANICA("Organica"), // Марка Organica
+    FITGURU("FitGuru"), // Марка FitGuru
     ;
 
     private final String label; // Поле за съхранение на марката

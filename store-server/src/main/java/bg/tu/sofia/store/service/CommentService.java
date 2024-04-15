@@ -16,4 +16,3 @@ public interface CommentService {
 
     Comment deleteComment(Long id);
 }
-

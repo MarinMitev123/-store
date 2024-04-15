@@ -6,15 +6,15 @@ import bg.tu.sofia.store.exception.EntityNotFoundException;
 import bg.tu.sofia.store.model.Product;
 import bg.tu.sofia.store.service.CommentService;
 import bg.tu.sofia.store.service.ProductService;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import javax.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -40,13 +40,13 @@ public class ProductServiceImpl implements ProductService {
                                         String.format("Product with ID=%s does not exist.", id)));
     }
 
-
     @Override
     public Product createProduct(Product product) {
         Product result = repo.findByModel(product.getModel());
         if (result != null) {
             throw new EntityAlreadyExistsException(
-                    String.format("Product with model=%s already exists!", product.getProductCategory()));
+                    String.format(
+                            "Product with model=%s already exists!", product.getProductCategory()));
         } else {
             return insert(product);
         }
@@ -69,9 +69,14 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Set<Product> getProductsByModelContains(String title) {
         return repo.findAll().stream()
-                .filter(product -> product.getProductCategory().toUpperCase().contains(title.toUpperCase()))
+                .filter(
+                        product ->
+                                product.getProductCategory()
+                                        .toUpperCase()
+                                        .contains(title.toUpperCase()))
                 .collect(Collectors.toSet());
     }
+
     @Override
     public Product deleteProduct(Long id) {
         Product old = getProductById(id);
@@ -112,4 +117,3 @@ public class ProductServiceImpl implements ProductService {
         return new HashSet<>(products);
     }
 }
-

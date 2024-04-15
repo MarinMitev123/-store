@@ -1,6 +1,5 @@
 package bg.tu.sofia.store.security;
 
-
 import lombok.experimental.UtilityClass;
 
 @UtilityClass

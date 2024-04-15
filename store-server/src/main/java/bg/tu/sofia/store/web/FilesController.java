@@ -3,6 +3,8 @@ package bg.tu.sofia.store.web;
 import bg.tu.sofia.store.model.FileInfo;
 import bg.tu.sofia.store.model.ResponseMessage;
 import bg.tu.sofia.store.service.FilesStorageService;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
@@ -12,9 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/files")
@@ -69,4 +68,3 @@ public class FilesController {
                 .body(file);
     }
 }
-

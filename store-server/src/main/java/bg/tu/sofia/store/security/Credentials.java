@@ -3,10 +3,9 @@ package bg.tu.sofia.store.security;
 import bg.tu.sofia.store.utils.ValidationUtils;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import javax.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Value;
-
-import javax.validation.constraints.NotNull;
 
 // Анотация за неизменяем клас с финални полета и методи за достъп до тях
 @Value
@@ -16,11 +15,9 @@ import javax.validation.constraints.NotNull;
 @JsonDeserialize(builder = Credentials.ValidatedCredentialsBuilder.class)
 public class Credentials {
     // Анотация, която указва, че полето не може да бъде null
-    @NotNull
-    private String username;
+    @NotNull private String username;
     // Анотация, която указва, че полето не може да бъде null
-    @NotNull
-    private String password;
+    @NotNull private String password;
 
     // Анотация, която указва Jackson как да създаде Builder класа за десериализация на JSON обекти
     @JsonPOJOBuilder

@@ -1,7 +1,6 @@
 package bg.tu.sofia.store.service;
 
 import bg.tu.sofia.store.model.Product;
-
 import java.util.Set;
 
 public interface ProductService {
@@ -16,6 +15,7 @@ public interface ProductService {
     Product deleteProduct(Long id);
 
     Set<Product> getProductsByModelContains(String title);
+
     Set<Product> getProductsByBrandType(String brandType);
 
     Set<Product> getProductsByCategory(String category);
@@ -28,7 +28,5 @@ public interface ProductService {
 
     Set<Product> getNewProducts();
 
-
-    //Set<Product> getProductsByRole(String role);
+    // Set<Product> getProductsByRole(String role);
 }
-

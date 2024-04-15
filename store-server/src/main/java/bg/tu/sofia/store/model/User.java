@@ -3,25 +3,24 @@ package bg.tu.sofia.store.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import lombok.*;
-import org.hibernate.validator.constraints.Length;
-
-import javax.persistence.*;
-import javax.transaction.Transactional;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.*;
+import javax.transaction.Transactional;
+import javax.validation.constraints.NotNull;
+import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
 @Data
 // Използване на Lombok за автоматично генериране на getter и setter методи, toString и други
 @JsonIgnoreProperties(
         value = {
-                "accountNonExpired",
-                "accountNonLocked",
-                "credentialsNonExpired",
-                "enabled",
-                "comments"
+            "accountNonExpired",
+            "accountNonLocked",
+            "credentialsNonExpired",
+            "enabled",
+            "comments"
         })
 // Игнориране на определени свойства при сериализация
 @JsonPropertyOrder({"id"})
